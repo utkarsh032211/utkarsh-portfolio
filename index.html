@@ -1,118 +1,460 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Utkarsh Yadav - Portfolio</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
-        header { background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC); color: #fff; padding: 40px 20px; text-align: center; animation: fadeIn 1.5s ease; }
-        header h1 { margin: 0; font-size: 2.5em; }
-        header p { margin: 10px 0; }
-        nav { text-align: center; background: #222; padding: 10px 0; position: sticky; top: 0; z-index: 100; }
-        nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; transition: color 0.3s; }
-        nav a:hover { color: #6FB1FC; }
-        section { padding: 20px; max-width: 900px; margin: auto; background: #fff; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); animation: fadeInUp 0.8s ease; }
-        h2 { border-bottom: 3px solid #6FB1FC; padding-bottom: 5px; color: #0052D4; display: flex; align-items: center; justify-content: space-between; }
-        ul { list-style: none; padding: 0; }
-        li { margin-bottom: 10px; }
-        footer { background: #222; color: #fff; text-align: center; padding: 15px; }
-        .contact a { color: #FFD700; }
-        button { background: #0052D4; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s; font-size: 0.9em; }
-        button:hover { background: #4364F7; }
-        img { max-width: 100%; border-radius: 8px; margin: 10px 0; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
-    <script>
-        function addItem(listId, type) {
-            let item = prompt(`Enter your new ${type}:`);
-            if(item) {
-                let li = document.createElement("li");
-                li.textContent = item;
-                document.getElementById(listId).appendChild(li);
-            }
-        }
-        function editContent(sectionId) {
-            let section = document.getElementById(sectionId);
-            let newContent = prompt("Edit your information:", section.innerHTML);
-            if(newContent !== null) section.innerHTML = newContent;
-        }
-    </script>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Utkarsh Yadav — Portfolio</title>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
+<style>
+  :root{
+    --bg:#0f1724; --card:#ffffff; --muted:#6b7280; --accent1:#0052D4; --accent2:#6FB1FC;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    background: linear-gradient(180deg,#071025 0%, #0f1724 100%);
+    color:#0b1220; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* header */
+  .hero{
+    padding:48px 20px; text-align:center; color:white; position:relative; overflow:hidden;
+    background: linear-gradient(135deg, rgba(6,60,255,0.9), rgba(107,177,252,0.9));
+  }
+  .hero .container{max-width:1100px;margin:0 auto;display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap;}
+  .avatar{
+    width:150px;height:150px;border-radius:20px;flex:0 0 150px;overflow:hidden;
+    box-shadow:0 12px 30px rgba(10,25,80,0.45); transform:translateY(-6px);
+    border:6px solid rgba(255,255,255,0.08);
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .hero h1{margin:0;font-size:clamp(22px,3vw,36px);letter-spacing:0.2px}
+  .hero p.lead{margin:8px 0 0;color:rgba(255,255,255,0.94)}
+
+  /* nav */
+  .nav {
+    display:flex;gap:10px; justify-content:center; padding:12px; background:rgba(255,255,255,0.02);
+    backdrop-filter: blur(6px);
+    position:sticky; top:0; z-index:60;
+  }
+  .nav a{color:var(--card); text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600;}
+  .nav a:hover{background:rgba(255,255,255,0.06)}
+
+  /* layout */
+  .wrap{max-width:1100px;margin:28px auto;padding:0 20px; display:grid; grid-template-columns:1fr 380px; gap:22px; align-items:start;}
+  @media(max-width:900px){ .wrap{grid-template-columns:1fr} .avatar{margin:0 auto} }
+
+  .card{background:var(--card); border-radius:12px; padding:18px; box-shadow:0 8px 30px rgba(2,6,23,0.35); color:#0b1220; animation:cardIn .6s ease both;}
+  @keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  h2.section-title{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;font-size:18px;color:var(--accent1)}
+  .small{color:var(--muted);font-size:13px}
+
+  /* lists */
+  .list{display:flex;flex-direction:column;gap:8px}
+  .list .item{padding:10px;border-radius:8px;background:linear-gradient(180deg,#ffffff,#fbfdff);box-shadow:0 6px 18px rgba(6,60,255,0.04)}
+  .project-thumb{width:100%;height:140px;border-radius:8px;object-fit:cover}
+
+  /* right column */
+  .side .contact a{display:inline-block;margin-right:8px;color:var(--accent2);text-decoration:none}
+  .side .stat{display:flex;justify-content:space-between;padding:10px;background:linear-gradient(180deg,#f9fbff,#eef6ff);border-radius:10px;margin-bottom:10px}
+
+  /* edit controls */
+  .controls{display:flex;gap:8px;align-items:center}
+  .btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
+  .btn.secondary{background:#f3f4f6;color:#0b1220;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.06)}
+
+  /* show/hide editing UI */
+  .editable-marker{display:inline-block;padding:4px 8px;background:rgba(0,0,0,0.05);border-radius:6px;font-size:12px;color:var(--muted);margin-left:8px}
+  .edit-actions{display:none;gap:8px}
+  body.edit-mode .edit-actions{display:flex}
+
+  /* footer */
+  footer{max-width:1100px;margin:28px auto;padding:20px;text-align:center;color:var(--muted)}
+
+  /* subtle floating backgrounds */
+  .floating {
+    position:absolute; border-radius:50%; opacity:0.12; mix-blend-mode:screen; filter:blur(26px);
+  }
+  .f1{width:420px;height:420px;left:-60px;top:-120px;background:radial-gradient(circle,#ffffff,#a0c4ff)}
+  .f2{width:260px;height:260px;right:-40px;top:-80px;background:radial-gradient(circle,#ffd8a8,#ffb4a2)}
+</style>
 </head>
 <body>
-    <header>
-        <h1 id="name">Utkarsh Yadav</h1>
-        <p id="tagline">Mechanical Engineering Student | CAD Designer | Problem Solver</p>
-        <img src="https://via.placeholder.com/150" alt="Profile Picture">
-        <p class="contact">
-            Email: <a href="mailto:itsutkarsh2203@gmail.com">itsutkarsh2203@gmail.com</a> | 
-            <a href="https://www.linkedin.com/in/utkarsh-yadav-01746a282/" target="_blank">LinkedIn</a> | 
-            <a href="https://github.com/utkarsh032211" target="_blank">GitHub</a>
-        </p>
-    </header>
-    <nav>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#projects">Projects</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#activities">Activities</a>
-    </nav>
-    <section id="education">
-        <h2>Education <button onclick="editContent('education-content')">Edit</button></h2>
-        <div id="education-content">
-            <p><strong>Vellore Institute of Technology</strong> - B.Tech Mechanical Engineering, GPA: 8.2 (2022 - 2026)</p>
-            <p><strong>Kendriya Vidyalaya No 2 Jaipur Cantt</strong> - Class 12th, 80% (2021)</p>
+
+<!-- hero -->
+<section class="hero">
+  <div class="floating f1"></div>
+  <div class="floating f2"></div>
+
+  <div class="container">
+    <div class="avatar card" aria-hidden="true">
+      <!-- replace with your own photo file in production -->
+      <img id="profile-image" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6b2b7ce4b4b9a6f19c6b6b6b6b6b6b6b" alt="Profile">
+    </div>
+
+    <div style="flex:1;min-width:220px;text-align:left;color:white">
+      <h1 id="fullName">Utkarsh Yadav <span class="editable-marker" id="edit-label" style="display:none">Editing</span></h1>
+      <p class="lead" id="tagline">Mechanical Engineering Student • CAD Designer • Problem Solver</p>
+      <div style="margin-top:12px" class="controls">
+        <button class="btn" id="unlockBtn">Enable Edit Mode</button>
+        <button class="btn secondary" id="downloadBtn" title="Download JSON">Export JSON</button>
+        <button class="btn secondary" id="importBtn" title="Import JSON (overwrite)">Import JSON</button>
+      </div>
+      <p class="small" style="margin-top:10px;color:rgba(255,255,255,0.9)">
+        Email: <a style="color: yellow" id="emailLink" href="mailto:itsutkarsh2203@gmail.com">itsutkarsh2203@gmail.com</a>
+        &nbsp;•&nbsp;
+        <a id="linkedinLink" style="color: yellow" href="https://www.linkedin.com/in/utkarsh-yadav-01746a282/" target="_blank">LinkedIn</a>
+        &nbsp;•&nbsp;
+        <a id="githubLink" style="color: yellow" href="https://github.com/utkarsh032211" target="_blank">GitHub</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- nav -->
+<nav class="nav">
+  <a href="#about">About</a>
+  <a href="#projects">Projects</a>
+  <a href="#experience">Experience</a>
+  <a href="#education">Education</a>
+  <a href="#certificates">Certifications</a>
+  <a href="#activities">Activities</a>
+</nav>
+
+<!-- main -->
+<main class="wrap">
+  <!-- left column -->
+  <div>
+    <section id="about" class="card">
+      <h2 class="section-title">About
+        <div class="edit-actions">
+          <button class="btn secondary" data-edit-target="aboutText">Edit</button>
         </div>
+      </h2>
+      <div id="aboutText">I’m a mechanical engineering student at Vellore Institute of Technology. I enjoy CAD design, mechanical systems, and applying programming to engineering problems.</div>
     </section>
-    <section id="skills">
-        <h2>Skills Summary <button onclick="editContent('skills-content')">Edit</button></h2>
-        <div id="skills-content">
-            <ul>
-                <li><strong>Languages:</strong> Python, Java</li>
-                <li><strong>Technical Skills:</strong> SolidWorks, AutoCAD, CATIA, Siemens NX, Fanuc Roboguide</li>
-                <li><strong>Analysis Tools:</strong> ANSYS, MATLAB, Simulink</li>
-                <li><strong>Other Tools:</strong> MS Office, Fusion 360</li>
-                <li><strong>Soft Skills:</strong> Leadership, Event Management, Writing, Public Speaking, Time Management</li>
-            </ul>
+
+    <section id="projects" class="card" style="margin-top:18px">
+      <h2 class="section-title">Projects
+        <div class="edit-actions">
+          <button class="btn" id="addProjectBtn">+ Add</button>
+          <button class="btn secondary" data-edit-target="projectList">Edit list</button>
         </div>
-    </section>
-    <section id="experience">
-        <h2>Experience <button onclick="editContent('experience-content')">Edit</button></h2>
-        <div id="experience-content">
-            <p><strong>Banaras Locomotive Works - Indian Railways</strong> (June 2025 - July 2025)<br> Mechanical Engineering Intern - Hands-on work with locomotive component manufacturing, assembly, and workflow systems.</p>
-            <p><strong>Freezo Tech Systems</strong> (May 2024 - July 2024)<br> CAD modeling, optimization of modular cold rooms, and material insulation projects.</p>
+      </h2>
+      <div id="projectList" class="list">
+        <div class="item">
+          <img class="project-thumb" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="">
+          <strong>Helical Gear Box Design</strong>
+          <div class="small">SolidWorks design with detailed 2D drawings and exploded views.</div>
         </div>
-    </section>
-    <section id="projects">
-        <h2>Projects <button onclick="addItem('project-list', 'project')">Add</button></h2>
-        <ul id="project-list">
-            <li><strong>Helical Gear Box Design:</strong> SolidWorks design with detailed 2D drawings and exploded views.</li>
-            <li><strong>Radial Engine Assembly:</strong> Functional SolidWorks model with real-time motion simulation.</li>
-            <li><strong>Bolt and Nut Recommendation System:</strong> Python tool recommending optimal fasteners based on input parameters.</li>
-        </ul>
-    </section>
-    <section id="certifications">
-        <h2>Certifications <button onclick="editContent('certifications-content')">Edit</button></h2>
-        <div id="certifications-content">
-            <ul>
-                <li>Microsoft Certified: Azure AI Fundamentals (AI-900)</li>
-                <li>Python for Mechanical Engineers (Udemy)</li>
-                <li>Geometric Dimensioning and Tolerancing - Basics (Udemy)</li>
-            </ul>
+        <div class="item">
+          <img class="project-thumb" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1200&auto=format&fit=crop" alt="">
+          <strong>Radial Engine Assembly</strong>
+          <div class="small">Functional SolidWorks model with motion simulation.</div>
         </div>
+        <div class="item">
+          <img class="project-thumb" src="https://images.unsplash.com/photo-1581091012184-7b2ae4dd9b79?q=80&w=1200&auto=format&fit=crop" alt="">
+          <strong>Bolt & Nut Recommendation System</strong>
+          <div class="small">Python tool recommending fasteners based on loads and material.</div>
+        </div>
+      </div>
     </section>
-    <section id="activities">
-        <h2>Extra-Curricular Activities <button onclick="addItem('activity-list', 'achievement')">Add</button></h2>
-        <ul id="activity-list">
-            <li>Student Coordinator – Gravitas Tech Fest VIT Vellore</li>
-            <li>Student Volunteer – Riviera Cultural Fest VIT Vellore</li>
-            <li>First Place – Speech Competition (Army Regiment Event)</li>
-        </ul>
+
+    <section id="experience" class="card" style="margin-top:18px">
+      <h2 class="section-title">Experience
+        <div class="edit-actions">
+          <button class="btn secondary" data-edit-target="experienceList">Edit</button>
+        </div>
+      </h2>
+      <div id="experienceList" class="list">
+        <div class="item"><strong>Banaras Locomotive Works - Mechanical Engineering Intern</strong><div class="small">June 2025 - July 2025 — hands-on in manufacturing & assembly.</div></div>
+        <div class="item"><strong>Freezo Tech Systems - Summer Intern</strong><div class="small">May 2024 - July 2024 — CAD modelling & insulation engineering.</div></div>
+      </div>
     </section>
-    <footer>
-        <p>&copy; 2025 Utkarsh Yadav. All Rights Reserved.</p>
-    </footer>
+  </div>
+
+  <!-- right column -->
+  <aside class="side">
+    <section id="education" class="card">
+      <h2 class="section-title">Education
+        <div class="edit-actions">
+          <button class="btn secondary" data-edit-target="educationContent">Edit</button>
+        </div>
+      </h2>
+      <div id="educationContent">
+        <div class="small"><strong>Vellore Institute of Technology</strong> — B.Tech Mechanical Engineering, GPA: 8.2 (2022 - 2026)</div>
+        <div class="small" style="margin-top:8px"><strong>Kendriya Vidyalaya No 2 Jaipur Cantt</strong> — Class 12th, 80% (2021)</div>
+      </div>
+    </section>
+
+    <section id="certificates" class="card" style="margin-top:18px">
+      <h2 class="section-title">Certifications
+        <div class="edit-actions">
+          <button class="btn secondary" data-edit-target="certContent">Edit</button>
+        </div>
+      </h2>
+      <div id="certContent" class="list">
+        <div class="item small">Microsoft Certified: Azure AI Fundamentals (AI-900)</div>
+        <div class="item small">Python for Mechanical Engineers (Udemy)</div>
+        <div class="item small">Geometric Dimensioning & Tolerancing (Udemy)</div>
+      </div>
+    </section>
+
+    <section id="activities" class="card" style="margin-top:18px">
+      <h2 class="section-title">Activities
+        <div class="edit-actions">
+          <button class="btn" id="addActivityBtn">+ Add</button>
+          <button class="btn secondary" data-edit-target="activityList">Edit</button>
+        </div>
+      </h2>
+      <div id="activityList" class="list">
+        <div class="item small">Student Coordinator – Gravitas Tech Fest VIT</div>
+        <div class="item small">Volunteer – Riviera Cultural Fest VIT</div>
+        <div class="item small">1st Place — Speech Competition (Army Regiment)</div>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<footer>
+  © <span id="year"></span> Utkarsh Yadav · Built with ❤️ · <span class="small">Edit mode is protected — change password in code before publishing</span>
+</footer>
+
+<script>
+/* ---------- CONFIG ---------- */
+/* Change this password to something strong BEFORE you host.
+   Note: it's client-side only — don't rely on it for high security. */
+const EDIT_PASSWORD = 'changeMe123';
+
+/* Initial state load & DOM references */
+const stateKey = 'utkarsh_portfolio_v1';
+const defaultState = {
+  fullName: 'Utkarsh Yadav',
+  tagline: 'Mechanical Engineering Student • CAD Designer • Problem Solver',
+  email: 'itsutkarsh2203@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/utkarsh-yadav-01746a282/',
+  github: 'https://github.com/utkarsh032211',
+  profileImage: document.getElementById('profile-image').src,
+  about: document.getElementById('aboutText').innerHTML,
+  projects: Array.from(document.querySelectorAll('#projectList .item')).map(it => ({
+    title: it.querySelector('strong') ? it.querySelector('strong').innerText : '',
+    desc: it.querySelector('.small') ? it.querySelector('.small').innerText : '',
+    img: it.querySelector('img') ? it.querySelector('img').src : ''
+  })),
+  experience: Array.from(document.querySelectorAll('#experienceList .item')).map(it => it.innerHTML),
+  education: document.getElementById('educationContent').innerHTML,
+  certifications: Array.from(document.querySelectorAll('#certContent .item')).map(it=>it.innerText),
+  activities: Array.from(document.querySelectorAll('#activityList .item')).map(it=>it.innerText)
+};
+
+/* Utility to load/save state */
+function saveState(state){
+  localStorage.setItem(stateKey, JSON.stringify(state));
+}
+function loadState(){
+  try{
+    const s = JSON.parse(localStorage.getItem(stateKey));
+    return s || defaultState;
+  }catch(e){
+    return defaultState;
+  }
+}
+
+/* Apply state to DOM */
+function applyState(state){
+  document.getElementById('fullName').childNodes[0].nodeValue = state.fullName + ' ';
+  document.getElementById('tagline').innerText = state.tagline;
+  document.getElementById('emailLink').innerText = state.email;
+  document.getElementById('emailLink').href = 'mailto:' + state.email;
+  document.getElementById('linkedinLink').href = state.linkedin;
+  document.getElementById('githubLink').href = state.github;
+  document.getElementById('profile-image').src = state.profileImage;
+  document.getElementById('aboutText').innerHTML = state.about;
+
+  // projects
+  const pl = document.getElementById('projectList');
+  pl.innerHTML = '';
+  state.projects.forEach(p=>{
+    const d = document.createElement('div');
+    d.className = 'item';
+    d.innerHTML = `
+      <img class="project-thumb" src="${p.img}" alt="">
+      <strong>${p.title}</strong>
+      <div class="small">${p.desc}</div>
+    `;
+    pl.appendChild(d);
+  });
+
+  // experience
+  const ex = document.getElementById('experienceList');
+  ex.innerHTML = '';
+  state.experience.forEach(e=>{
+    const d = document.createElement('div');
+    d.className = 'item';
+    d.innerHTML = e;
+    ex.appendChild(d);
+  });
+
+  // education
+  document.getElementById('educationContent').innerHTML = state.education;
+
+  // certs & activities
+  const cert = document.getElementById('certContent');
+  cert.innerHTML = '';
+  state.certifications.forEach(c=>{
+    const it = document.createElement('div'); it.className='item small'; it.innerText = c; cert.appendChild(it);
+  });
+
+  const act = document.getElementById('activityList');
+  act.innerHTML = '';
+  state.activities.forEach(a=>{
+    const it = document.createElement('div'); it.className='item small'; it.innerText = a; act.appendChild(it);
+  });
+}
+
+/* ---------- UI & Edit Mode ---------- */
+let currentState = loadState();
+applyState(currentState);
+
+document.getElementById('year').innerText = new Date().getFullYear();
+
+/* Unlock / Lock behavior */
+const unlockBtn = document.getElementById('unlockBtn');
+unlockBtn.addEventListener('click', async ()=>{
+  if(document.body.classList.contains('edit-mode')){
+    // lock
+    document.body.classList.remove('edit-mode');
+    unlockBtn.innerText = 'Enable Edit Mode';
+    document.getElementById('edit-label').style.display = 'none';
+    // save edited content back to state
+    currentState = collectStateFromDOM();
+    saveState(currentState);
+    alert('Editing locked and changes saved locally.');
+    return;
+  }
+  const pwd = prompt('Enter password to enable Edit Mode:');
+  if(pwd === EDIT_PASSWORD){
+    document.body.classList.add('edit-mode');
+    unlockBtn.innerText = 'Disable Edit Mode';
+    document.getElementById('edit-label').style.display = 'inline-block';
+    enableEditing();
+    alert('Edit Mode enabled. Click any "Edit" button or directly edit highlighted elements.');
+  }else if(pwd !== null){
+    alert('Incorrect password.');
+  }
+});
+
+/* Make certain elements editable when in edit-mode */
+function enableEditing(){
+  // show editable outline on editable elements
+  const editableTargets = ['aboutText','educationContent','experienceList','projectList','certContent','activityList'];
+  editableTargets.forEach(id=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.contentEditable = true;
+    el.style.outline = '2px dashed rgba(0,82,212,0.12)';
+    el.style.padding = '8px';
+    el.addEventListener('input', ()=>{ /* live */ });
+  });
+}
+
+/* Collect current DOM content into state object */
+function collectStateFromDOM(){
+  return {
+    fullName: document.getElementById('fullName').innerText.trim(),
+    tagline: document.getElementById('tagline').innerText.trim(),
+    email: document.getElementById('emailLink').innerText.trim(),
+    linkedin: document.getElementById('linkedinLink').href,
+    github: document.getElementById('githubLink').href,
+    profileImage: document.getElementById('profile-image').src,
+    about: document.getElementById('aboutText').innerHTML,
+    projects: Array.from(document.querySelectorAll('#projectList .item')).map(it => ({
+      title: it.querySelector('strong') ? it.querySelector('strong').innerText : '',
+      desc: it.querySelector('.small') ? it.querySelector('.small').innerText : '',
+      img: it.querySelector('img') ? it.querySelector('img').src : ''
+    })),
+    experience: Array.from(document.querySelectorAll('#experienceList .item')).map(it => it.innerHTML),
+    education: document.getElementById('educationContent').innerHTML,
+    certifications: Array.from(document.querySelectorAll('#certContent .item')).map(it=>it.innerText),
+    activities: Array.from(document.querySelectorAll('#activityList .item')).map(it=>it.innerText)
+  };
+}
+
+/* Add project / activity behavior (prompts) */
+document.getElementById('addProjectBtn').addEventListener('click', ()=>{
+  if(!document.body.classList.contains('edit-mode')){ alert('Enable Edit Mode first'); return; }
+  const title = prompt('Project title:'); if(!title) return;
+  const desc = prompt('Short description:') || '';
+  const img = prompt('Image URL (or leave blank for placeholder):') || 'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1200&auto=format&fit=crop';
+  currentState.projects.push({title,desc,img});
+  applyState(currentState);
+  saveState(currentState);
+});
+
+document.getElementById('addActivityBtn').addEventListener('click', ()=>{
+  if(!document.body.classList.contains('edit-mode')){ alert('Enable Edit Mode first'); return; }
+  const text = prompt('Activity / Achievement:'); if(!text) return;
+  currentState.activities.push(text);
+  applyState(currentState);
+  saveState(currentState);
+});
+
+/* Edit buttons that allow inline editing focus */
+document.querySelectorAll('[data-edit-target]').forEach(btn=>{
+  btn.addEventListener('click', ()=> {
+    if(!document.body.classList.contains('edit-mode')){ alert('Enable Edit Mode first'); return; }
+    const id = btn.getAttribute('data-edit-target');
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.focus();
+    // just inform user they can edit directly
+    alert('You can now edit this section directly. Changes are saved when you lock editing.');
+  });
+});
+
+/* Export / Import JSON */
+document.getElementById('downloadBtn').addEventListener('click', ()=>{
+  const s = collectStateFromDOM();
+  const blob = new Blob([JSON.stringify(s, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'portfolio-data.json'; document.body.appendChild(a); a.click(); a.remove();
+});
+
+document.getElementById('importBtn').addEventListener('click', ()=>{
+  const f = document.createElement('input'); f.type='file'; f.accept='application/json';
+  f.onchange = e=>{
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = ev=>{
+      try{
+        const obj = JSON.parse(ev.target.result);
+        // Overwrite current state & apply
+        currentState = Object.assign({}, defaultState, obj);
+        applyState(currentState);
+        saveState(currentState);
+        alert('Imported and applied JSON data.');
+      }catch(err){
+        alert('Invalid JSON file.');
+      }
+    };
+    reader.readAsText(file);
+  };
+  f.click();
+});
+
+/* On first page load, if there's saved state, apply it */
+window.addEventListener('load', ()=>{
+  const s = loadState();
+  currentState = s;
+  applyState(currentState);
+});
+
+/* Save on unload to be safe */
+window.addEventListener('beforeunload', ()=> {
+  const s = collectStateFromDOM(); saveState(s);
+});
+
+</script>
 </body>
 </html>
