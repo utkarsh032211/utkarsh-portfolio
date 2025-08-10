@@ -4,209 +4,123 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Utkarsh Yadav — Portfolio</title>
-<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <style>
   :root{
     --bg:#0f1724; --card:#ffffff; --muted:#6b7280; --accent1:#0052D4; --accent2:#6FB1FC;
   }
   *{box-sizing:border-box}
   body{
-    margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+    margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial;
     background: linear-gradient(180deg,#071025 0%, #0f1724 100%);
-    color:#0b1220; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    color:#0b1220;
   }
-
-  /* header */
   .hero{
-    padding:48px 20px; text-align:center; color:white; position:relative; overflow:hidden;
-    background: linear-gradient(135deg, rgba(6,60,255,0.9), rgba(107,177,252,0.9));
+    padding:42px 20px; text-align:center; color:white; position:relative; overflow:hidden;
+    background: linear-gradient(135deg, rgba(6,60,255,0.92), rgba(107,177,252,0.92));
   }
   .hero .container{max-width:1100px;margin:0 auto;display:flex;gap:24px;align-items:center;justify-content:center;flex-wrap:wrap;}
   .avatar{
-    width:150px;height:150px;border-radius:20px;flex:0 0 150px;overflow:hidden;
-    box-shadow:0 12px 30px rgba(10,25,80,0.45); transform:translateY(-6px);
-    border:6px solid rgba(255,255,255,0.08);
+    width:150px;height:150px;border-radius:12px;flex:0 0 150px;overflow:hidden;
+    box-shadow:0 12px 30px rgba(10,25,80,0.45); border:6px solid rgba(255,255,255,0.06);
+    background:linear-gradient(180deg,#e6eefc,#f7fbff);
+    display:flex;align-items:center;justify-content:center;
   }
   .avatar img{width:100%;height:100%;object-fit:cover;display:block}
-  .hero h1{margin:0;font-size:clamp(22px,3vw,36px);letter-spacing:0.2px}
-  .hero p.lead{margin:8px 0 0;color:rgba(255,255,255,0.94)}
-
-  /* nav */
-  .nav {
-    display:flex;gap:10px; justify-content:center; padding:12px; background:rgba(255,255,255,0.02);
-    backdrop-filter: blur(6px);
-    position:sticky; top:0; z-index:60;
-  }
+  .hero h1{margin:0;font-size:clamp(22px,3vw,36px)}
+  .hero p.lead{margin:8px 0 0;color:rgba(255,255,255,0.95)}
+  .nav {display:flex;gap:8px; justify-content:center; padding:12px; background:rgba(255,255,255,0.02); position:sticky; top:0; z-index:60;}
   .nav a{color:var(--card); text-decoration:none; padding:8px 12px; border-radius:8px; font-weight:600;}
-  .nav a:hover{background:rgba(255,255,255,0.06)}
-
-  /* layout */
-  .wrap{max-width:1100px;margin:28px auto;padding:0 20px; display:grid; grid-template-columns:1fr 380px; gap:22px; align-items:start;}
+  .wrap{max-width:1100px;margin:22px auto;padding:0 20px; display:grid; grid-template-columns:1fr 380px; gap:18px; align-items:start;}
   @media(max-width:900px){ .wrap{grid-template-columns:1fr} .avatar{margin:0 auto} }
-
-  .card{background:var(--card); border-radius:12px; padding:18px; box-shadow:0 8px 30px rgba(2,6,23,0.35); color:#0b1220; animation:cardIn .6s ease both;}
-  @keyframes cardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .card{background:var(--card); border-radius:12px; padding:16px; box-shadow:0 8px 30px rgba(2,6,23,0.28); color:#0b1220; animation:cardIn .6s ease both;}
+  @keyframes cardIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
   h2.section-title{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px;font-size:18px;color:var(--accent1)}
   .small{color:var(--muted);font-size:13px}
-
-  /* lists */
-  .list{display:flex;flex-direction:column;gap:8px}
+  .list{display:flex;flex-direction:column;gap:10px}
   .list .item{padding:10px;border-radius:8px;background:linear-gradient(180deg,#ffffff,#fbfdff);box-shadow:0 6px 18px rgba(6,60,255,0.04)}
-  .project-thumb{width:100%;height:140px;border-radius:8px;object-fit:cover}
-
-  /* right column */
-  .side .contact a{display:inline-block;margin-right:8px;color:var(--accent2);text-decoration:none}
-  .side .stat{display:flex;justify-content:space-between;padding:10px;background:linear-gradient(180deg,#f9fbff,#eef6ff);border-radius:10px;margin-bottom:10px}
-
-  /* edit controls */
-  .controls{display:flex;gap:8px;align-items:center}
+  .project-thumb{width:100%;height:140px;border-radius:8px;object-fit:cover;background:#f1f5f9;display:block}
+  .controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   .btn{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;padding:8px 12px;border-radius:8px;border:0;cursor:pointer;font-weight:700}
   .btn.secondary{background:#f3f4f6;color:#0b1220;box-shadow:inset 0 -2px 0 rgba(0,0,0,0.06)}
-
-  /* show/hide editing UI */
-  .editable-marker{display:inline-block;padding:4px 8px;background:rgba(0,0,0,0.05);border-radius:6px;font-size:12px;color:var(--muted);margin-left:8px}
   .edit-actions{display:none;gap:8px}
   body.edit-mode .edit-actions{display:flex}
-
-  /* footer */
+  .editable{outline:2px dashed rgba(0,82,212,0.12);padding:6px;border-radius:6px}
   footer{max-width:1100px;margin:28px auto;padding:20px;text-align:center;color:var(--muted)}
-
-  /* subtle floating backgrounds */
-  .floating {
-    position:absolute; border-radius:50%; opacity:0.12; mix-blend-mode:screen; filter:blur(26px);
-  }
-  .f1{width:420px;height:420px;left:-60px;top:-120px;background:radial-gradient(circle,#ffffff,#a0c4ff)}
-  .f2{width:260px;height:260px;right:-40px;top:-80px;background:radial-gradient(circle,#ffd8a8,#ffb4a2)}
+  .placeholder{width:100%;height:140px;border-radius:8px;background:linear-gradient(180deg,#eef2ff,#ffffff);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700}
+  .small-link{color:var(--accent1);text-decoration:underline}
+  .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  input[type="file"]{display:none}
 </style>
 </head>
 <body>
 
-<!-- hero -->
 <section class="hero">
-  <div class="floating f1"></div>
-  <div class="floating f2"></div>
-
   <div class="container">
-    <div class="avatar card" aria-hidden="true">
-      <!-- replace with your own photo file in production -->
-      <img id="profile-image" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6b2b7ce4b4b9a6f19c6b6b6b6b6b6b6b" alt="Profile">
+    <div class="avatar card">
+      <img id="profileImage" src="" alt="Profile" />
     </div>
-
     <div style="flex:1;min-width:220px;text-align:left;color:white">
-      <h1 id="fullName">Utkarsh Yadav <span class="editable-marker" id="edit-label" style="display:none">Editing</span></h1>
+      <h1 id="fullName">Utkarsh Yadav <span id="editTag" style="display:none;font-size:12px;margin-left:8px;background:rgba(255,255,255,0.08);padding:4px 8px;border-radius:6px">EDITING</span></h1>
       <p class="lead" id="tagline">Mechanical Engineering Student • CAD Designer • Problem Solver</p>
       <div style="margin-top:12px" class="controls">
-        <button class="btn" id="unlockBtn">Enable Edit Mode</button>
-        <button class="btn secondary" id="downloadBtn" title="Download JSON">Export JSON</button>
-        <button class="btn secondary" id="importBtn" title="Import JSON (overwrite)">Import JSON</button>
+        <button class="btn" id="toggleEdit">Enable Edit Mode</button>
+        <button class="btn secondary" id="exportBtn">Export JSON</button>
+        <button class="btn secondary" id="importBtn">Import JSON</button>
       </div>
-      <p class="small" style="margin-top:10px;color:rgba(255,255,255,0.9)">
-        Email: <a style="color: yellow" id="emailLink" href="mailto:itsutkarsh2203@gmail.com">itsutkarsh2203@gmail.com</a>
-        &nbsp;•&nbsp;
-        <a id="linkedinLink" style="color: yellow" href="https://www.linkedin.com/in/utkarsh-yadav-01746a282/" target="_blank">LinkedIn</a>
-        &nbsp;•&nbsp;
-        <a id="githubLink" style="color: yellow" href="https://github.com/utkarsh032211" target="_blank">GitHub</a>
+      <p class="small" style="margin-top:8px">Email: <a id="emailAnchor" href="mailto:itsutkarsh2203@gmail.com" class="small-link">itsutkarsh2203@gmail.com</a> &nbsp; • &nbsp;
+        <a id="linkedinAnchor" href="#" target="_blank" class="small-link">LinkedIn</a> &nbsp; • &nbsp;
+        <a id="githubAnchor" href="#" target="_blank" class="small-link">GitHub</a>
       </p>
     </div>
   </div>
 </section>
 
-<!-- nav -->
 <nav class="nav">
-  <a href="#about">About</a>
-  <a href="#projects">Projects</a>
-  <a href="#experience">Experience</a>
-  <a href="#education">Education</a>
-  <a href="#certificates">Certifications</a>
-  <a href="#activities">Activities</a>
+  <a href="#about">About</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#certificates">Certifications</a><a href="#activities">Activities</a>
 </nav>
 
-<!-- main -->
 <main class="wrap">
-  <!-- left column -->
   <div>
     <section id="about" class="card">
-      <h2 class="section-title">About
-        <div class="edit-actions">
-          <button class="btn secondary" data-edit-target="aboutText">Edit</button>
-        </div>
-      </h2>
+      <h2 class="section-title">About <span class="edit-actions"><button class="btn secondary" data-target="aboutText">Edit section</button></span></h2>
       <div id="aboutText">I’m a mechanical engineering student at Vellore Institute of Technology. I enjoy CAD design, mechanical systems, and applying programming to engineering problems.</div>
     </section>
 
-    <section id="projects" class="card" style="margin-top:18px">
-      <h2 class="section-title">Projects
-        <div class="edit-actions">
-          <button class="btn" id="addProjectBtn">+ Add</button>
-          <button class="btn secondary" data-edit-target="projectList">Edit list</button>
-        </div>
-      </h2>
+    <section id="projects" class="card" style="margin-top:14px">
+      <h2 class="section-title">Projects <span class="edit-actions"><button class="btn" id="addProject">+ Add</button><button class="btn secondary" data-target="projectList">Edit list</button></span></h2>
       <div id="projectList" class="list">
-        <div class="item">
-          <img class="project-thumb" src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop" alt="">
-          <strong>Helical Gear Box Design</strong>
-          <div class="small">SolidWorks design with detailed 2D drawings and exploded views.</div>
-        </div>
-        <div class="item">
-          <img class="project-thumb" src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=1200&auto=format&fit=crop" alt="">
-          <strong>Radial Engine Assembly</strong>
-          <div class="small">Functional SolidWorks model with motion simulation.</div>
-        </div>
-        <div class="item">
-          <img class="project-thumb" src="https://images.unsplash.com/photo-1581091012184-7b2ae4dd9b79?q=80&w=1200&auto=format&fit=crop" alt="">
-          <strong>Bolt & Nut Recommendation System</strong>
-          <div class="small">Python tool recommending fasteners based on loads and material.</div>
-        </div>
+        <!-- empty placeholders - user will add projects -->
       </div>
     </section>
 
-    <section id="experience" class="card" style="margin-top:18px">
-      <h2 class="section-title">Experience
-        <div class="edit-actions">
-          <button class="btn secondary" data-edit-target="experienceList">Edit</button>
-        </div>
-      </h2>
+    <section id="experience" class="card" style="margin-top:14px">
+      <h2 class="section-title">Experience <span class="edit-actions"><button class="btn" id="addExperience">+ Add</button><button class="btn secondary" data-target="experienceList">Edit</button></span></h2>
       <div id="experienceList" class="list">
-        <div class="item"><strong>Banaras Locomotive Works - Mechanical Engineering Intern</strong><div class="small">June 2025 - July 2025 — hands-on in manufacturing & assembly.</div></div>
-        <div class="item"><strong>Freezo Tech Systems - Summer Intern</strong><div class="small">May 2024 - July 2024 — CAD modelling & insulation engineering.</div></div>
+        <!-- user can add experience entries -->
       </div>
     </section>
   </div>
 
-  <!-- right column -->
   <aside class="side">
     <section id="education" class="card">
-      <h2 class="section-title">Education
-        <div class="edit-actions">
-          <button class="btn secondary" data-edit-target="educationContent">Edit</button>
-        </div>
-      </h2>
+      <h2 class="section-title">Education <span class="edit-actions"><button class="btn secondary" data-target="educationContent">Edit</button></span></h2>
       <div id="educationContent">
         <div class="small"><strong>Vellore Institute of Technology</strong> — B.Tech Mechanical Engineering, GPA: 8.2 (2022 - 2026)</div>
         <div class="small" style="margin-top:8px"><strong>Kendriya Vidyalaya No 2 Jaipur Cantt</strong> — Class 12th, 80% (2021)</div>
       </div>
     </section>
 
-    <section id="certificates" class="card" style="margin-top:18px">
-      <h2 class="section-title">Certifications
-        <div class="edit-actions">
-          <button class="btn secondary" data-edit-target="certContent">Edit</button>
-        </div>
-      </h2>
-      <div id="certContent" class="list">
+    <section id="certificates" class="card" style="margin-top:14px">
+      <h2 class="section-title">Certifications <span class="edit-actions"><button class="btn secondary" data-target="certList">Edit</button></span></h2>
+      <div id="certList" class="list">
         <div class="item small">Microsoft Certified: Azure AI Fundamentals (AI-900)</div>
         <div class="item small">Python for Mechanical Engineers (Udemy)</div>
         <div class="item small">Geometric Dimensioning & Tolerancing (Udemy)</div>
       </div>
     </section>
 
-    <section id="activities" class="card" style="margin-top:18px">
-      <h2 class="section-title">Activities
-        <div class="edit-actions">
-          <button class="btn" id="addActivityBtn">+ Add</button>
-          <button class="btn secondary" data-edit-target="activityList">Edit</button>
-        </div>
-      </h2>
+    <section id="activities" class="card" style="margin-top:14px">
+      <h2 class="section-title">Activities <span class="edit-actions"><button class="btn" id="addActivity">+ Add</button><button class="btn secondary" data-target="activityList">Edit</button></span></h2>
       <div id="activityList" class="list">
         <div class="item small">Student Coordinator – Gravitas Tech Fest VIT</div>
         <div class="item small">Volunteer – Riviera Cultural Fest VIT</div>
@@ -216,244 +130,347 @@
   </aside>
 </main>
 
-<footer>
-  © <span id="year"></span> Utkarsh Yadav · Built with ❤️ · <span class="small">Edit mode is protected — change password in code before publishing</span>
-</footer>
+<footer>© <span id="year"></span> Utkarsh Yadav · Built with ❤️ · <small style="color:var(--muted)">Edit mode protected with client-side password (change in code before publishing)</small></footer>
+
+<!-- Hidden file inputs for images -->
+<input type="file" id="profileFile" accept="image/*">
+<input type="file" id="projectFile" accept="image/*">
 
 <script>
-/* ---------- CONFIG ---------- */
-/* Change this password to something strong BEFORE you host.
-   Note: it's client-side only — don't rely on it for high security. */
+/* ----------------- CONFIG ----------------- */
+/* Keep same password as requested */
 const EDIT_PASSWORD = 'changeMe123';
+const STORAGE_KEY = 'utkarsh_portfolio_v2';
 
-/* Initial state load & DOM references */
-const stateKey = 'utkarsh_portfolio_v1';
+/* ----------- Default initial state ----------- */
 const defaultState = {
   fullName: 'Utkarsh Yadav',
   tagline: 'Mechanical Engineering Student • CAD Designer • Problem Solver',
   email: 'itsutkarsh2203@gmail.com',
   linkedin: 'https://www.linkedin.com/in/utkarsh-yadav-01746a282/',
   github: 'https://github.com/utkarsh032211',
-  profileImage: document.getElementById('profile-image').src,
+  profileImage: '', // blank by default as requested
   about: document.getElementById('aboutText').innerHTML,
-  projects: Array.from(document.querySelectorAll('#projectList .item')).map(it => ({
-    title: it.querySelector('strong') ? it.querySelector('strong').innerText : '',
-    desc: it.querySelector('.small') ? it.querySelector('.small').innerText : '',
-    img: it.querySelector('img') ? it.querySelector('img').src : ''
-  })),
-  experience: Array.from(document.querySelectorAll('#experienceList .item')).map(it => it.innerHTML),
+  projects: [], // empty so user can add
+  experience: [],
   education: document.getElementById('educationContent').innerHTML,
-  certifications: Array.from(document.querySelectorAll('#certContent .item')).map(it=>it.innerText),
-  activities: Array.from(document.querySelectorAll('#activityList .item')).map(it=>it.innerText)
+  certifications: ['Microsoft Certified: Azure AI Fundamentals (AI-900)','Python for Mechanical Engineers (Udemy)','Geometric Dimensioning & Tolerancing (Udemy)'],
+  activities: ['Student Coordinator – Gravitas Tech Fest VIT','Volunteer – Riviera Cultural Fest VIT','1st Place — Speech Competition (Army Regiment)']
 };
 
-/* Utility to load/save state */
-function saveState(state){
-  localStorage.setItem(stateKey, JSON.stringify(state));
-}
+/* ----------- Utilities: load/save state ----------- */
 function loadState(){
   try{
-    const s = JSON.parse(localStorage.getItem(stateKey));
-    return s || defaultState;
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return JSON.parse(JSON.stringify(defaultState));
+    return JSON.parse(raw);
   }catch(e){
-    return defaultState;
+    return JSON.parse(JSON.stringify(defaultState));
   }
 }
+function saveState(s){ localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
 
-/* Apply state to DOM */
-function applyState(state){
-  document.getElementById('fullName').childNodes[0].nodeValue = state.fullName + ' ';
-  document.getElementById('tagline').innerText = state.tagline;
-  document.getElementById('emailLink').innerText = state.email;
-  document.getElementById('emailLink').href = 'mailto:' + state.email;
-  document.getElementById('linkedinLink').href = state.linkedin;
-  document.getElementById('githubLink').href = state.github;
-  document.getElementById('profile-image').src = state.profileImage;
-  document.getElementById('aboutText').innerHTML = state.about;
+/* ----------- Apply state to DOM ----------- */
+function applyState(s){
+  document.getElementById('fullName').childNodes[0].nodeValue = s.fullName + ' ';
+  document.getElementById('tagline').innerText = s.tagline;
+  document.getElementById('emailAnchor').innerText = s.email;
+  document.getElementById('emailAnchor').href = 'mailto:' + s.email;
+  document.getElementById('linkedinAnchor').href = s.linkedin;
+  document.getElementById('linkedinAnchor').innerText = (new URL(s.linkedin)).hostname.replace('www.','');
+  document.getElementById('githubAnchor').href = s.github;
+  document.getElementById('githubAnchor').innerText = (new URL(s.github)).pathname.replace('/','');
 
-  // projects
-  const pl = document.getElementById('projectList');
-  pl.innerHTML = '';
-  state.projects.forEach(p=>{
-    const d = document.createElement('div');
-    d.className = 'item';
-    d.innerHTML = `
-      <img class="project-thumb" src="${p.img}" alt="">
-      <strong>${p.title}</strong>
-      <div class="small">${p.desc}</div>
+  // Profile image
+  const pimg = document.getElementById('profileImage');
+  if(s.profileImage) { pimg.src = s.profileImage; pimg.alt = 'Profile'; }
+  else { pimg.src = ''; pimg.alt = ''; pimg.style.display='none';
+         // show placeholder visually
+         const parent = pimg.parentElement;
+         if(!parent.querySelector('.ph')){
+           const ph = document.createElement('div'); ph.className='ph placeholder'; ph.innerText='Upload profile image'; ph.style.pointerEvents='none';
+           parent.insertBefore(ph, pimg);
+         }
+  }
+  if(s.profileImage && document.querySelector('.ph')){
+    document.querySelectorAll('.ph').forEach(n=>n.remove());
+    pimg.style.display='block';
+  }
+
+  // About
+  document.getElementById('aboutText').innerHTML = s.about;
+
+  // Projects
+  const pl = document.getElementById('projectList'); pl.innerHTML='';
+  s.projects.forEach((p, idx)=>{
+    const card = document.createElement('div'); card.className='item';
+    card.dataset.index = idx;
+    card.innerHTML = `
+      ${p.img ? `<img class="project-thumb" src="${p.img}" alt="Project image">` : `<div class="placeholder">Project image</div>`}
+      <div style="margin-top:8px"><strong class="proj-title">${escapeHtml(p.title)}</strong></div>
+      <div class="small proj-desc">${escapeHtml(p.desc)}</div>
+      <div style="margin-top:8px"><a class="small-link proj-link" href="${escapeHtml(p.link||'#')}" target="_blank">${p.link ? p.link : 'No link provided'}</a></div>
+      <div class="edit-actions" style="margin-top:8px;display:none">
+        <button class="btn secondary edit-proj" data-idx="${idx}">Edit</button>
+        <button class="btn secondary del-proj" data-idx="${idx}">Delete</button>
+      </div>
     `;
-    pl.appendChild(d);
+    pl.appendChild(card);
   });
 
-  // experience
-  const ex = document.getElementById('experienceList');
-  ex.innerHTML = '';
-  state.experience.forEach(e=>{
-    const d = document.createElement('div');
-    d.className = 'item';
-    d.innerHTML = e;
-    ex.appendChild(d);
+  // Experience
+  const el = document.getElementById('experienceList'); el.innerHTML='';
+  s.experience.forEach((e, idx)=>{
+    const d = document.createElement('div'); d.className='item'; d.dataset.idx=idx;
+    d.innerHTML = `<strong>${escapeHtml(e.title)}</strong><div class="small">${escapeHtml(e.detail)}</div><div class="edit-actions" style="margin-top:8px;display:none"><button class="btn secondary edit-exp" data-idx="${idx}">Edit</button><button class="btn secondary del-exp" data-idx="${idx}">Delete</button></div>`;
+    el.appendChild(d);
   });
 
-  // education
-  document.getElementById('educationContent').innerHTML = state.education;
+  // certifications
+  const cert = document.getElementById('certList'); cert.innerHTML='';
+  s.certifications.forEach(c=>{ const it=document.createElement('div'); it.className='item small'; it.innerText=c; cert.appendChild(it); });
 
-  // certs & activities
-  const cert = document.getElementById('certContent');
-  cert.innerHTML = '';
-  state.certifications.forEach(c=>{
-    const it = document.createElement('div'); it.className='item small'; it.innerText = c; cert.appendChild(it);
-  });
-
-  const act = document.getElementById('activityList');
-  act.innerHTML = '';
-  state.activities.forEach(a=>{
-    const it = document.createElement('div'); it.className='item small'; it.innerText = a; act.appendChild(it);
-  });
+  // activities
+  const act = document.getElementById('activityList'); act.innerHTML='';
+  s.activities.forEach(a=>{ const it=document.createElement('div'); it.className='item small'; it.innerText=a; act.appendChild(it); });
 }
 
-/* ---------- UI & Edit Mode ---------- */
-let currentState = loadState();
-applyState(currentState);
+/* escape helper */
+function escapeHtml(str){ if(!str) return ''; return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
+/* ----------- Initialize ----------- */
+let state = loadState();
+applyState(state);
 document.getElementById('year').innerText = new Date().getFullYear();
 
-/* Unlock / Lock behavior */
-const unlockBtn = document.getElementById('unlockBtn');
-unlockBtn.addEventListener('click', async ()=>{
+/* ----------- Edit mode handling ----------- */
+const toggleBtn = document.getElementById('toggleEdit');
+toggleBtn.addEventListener('click', ()=>{
   if(document.body.classList.contains('edit-mode')){
-    // lock
+    // disable edit mode and save
     document.body.classList.remove('edit-mode');
-    unlockBtn.innerText = 'Enable Edit Mode';
-    document.getElementById('edit-label').style.display = 'none';
-    // save edited content back to state
-    currentState = collectStateFromDOM();
-    saveState(currentState);
-    alert('Editing locked and changes saved locally.');
+    toggleBtn.innerText = 'Enable Edit Mode';
+    document.getElementById('editTag').style.display='none';
+    // remove contentEditable
+    ['aboutText','educationContent'].forEach(id=>{ const el=document.getElementById(id); if(el){el.contentEditable='false'; el.classList.remove('editable')} });
+    // hide edit-actions
+    document.querySelectorAll('.edit-actions').forEach(n=>n.style.display='none');
+    // save to state
+    state = collectStateFromDOM();
+    saveState(state);
+    alert('Edit mode disabled — changes saved locally.');
     return;
   }
   const pwd = prompt('Enter password to enable Edit Mode:');
   if(pwd === EDIT_PASSWORD){
     document.body.classList.add('edit-mode');
-    unlockBtn.innerText = 'Disable Edit Mode';
-    document.getElementById('edit-label').style.display = 'inline-block';
-    enableEditing();
-    alert('Edit Mode enabled. Click any "Edit" button or directly edit highlighted elements.');
-  }else if(pwd !== null){
-    alert('Incorrect password.');
-  }
+    toggleBtn.innerText = 'Disable Edit Mode';
+    document.getElementById('editTag').style.display='inline-block';
+    // enable contentEditable for main blocks
+    ['aboutText','educationContent'].forEach(id=>{ const el=document.getElementById(id); if(el){el.contentEditable='true'; el.classList.add('editable')} });
+    // show edit actions
+    document.querySelectorAll('.edit-actions').forEach(n=>n.style.display='flex');
+    alert('Edit Mode enabled. Use the + Add buttons or Edit actions to change content. Images can be uploaded from your device.');
+  }else if(pwd !== null){ alert('Incorrect password.'); }
 });
 
-/* Make certain elements editable when in edit-mode */
-function enableEditing(){
-  // show editable outline on editable elements
-  const editableTargets = ['aboutText','educationContent','experienceList','projectList','certContent','activityList'];
-  editableTargets.forEach(id=>{
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.contentEditable = true;
-    el.style.outline = '2px dashed rgba(0,82,212,0.12)';
-    el.style.padding = '8px';
-    el.addEventListener('input', ()=>{ /* live */ });
-  });
-}
-
-/* Collect current DOM content into state object */
+/* ----------- Collect DOM back to state ----------- */
 function collectStateFromDOM(){
+  const projects = Array.from(document.querySelectorAll('#projectList .item')).map(it=>{
+    return {
+      img: it.querySelector('img') ? it.querySelector('img').src : '',
+      title: it.querySelector('.proj-title') ? it.querySelector('.proj-title').innerText : '',
+      desc: it.querySelector('.proj-desc') ? it.querySelector('.proj-desc').innerText : '',
+      link: it.querySelector('.proj-link') ? it.querySelector('.proj-link').href : ''
+    };
+  });
+  const experience = Array.from(document.querySelectorAll('#experienceList .item')).map(it=>{
+    return {
+      title: it.querySelector('strong') ? it.querySelector('strong').innerText : '',
+      detail: it.querySelector('.small') ? it.querySelector('.small').innerText : ''
+    };
+  });
+  const certs = Array.from(document.querySelectorAll('#certList .item')).map(it=>it.innerText);
+  const activities = Array.from(document.querySelectorAll('#activityList .item')).map(it=>it.innerText);
+
   return {
     fullName: document.getElementById('fullName').innerText.trim(),
     tagline: document.getElementById('tagline').innerText.trim(),
-    email: document.getElementById('emailLink').innerText.trim(),
-    linkedin: document.getElementById('linkedinLink').href,
-    github: document.getElementById('githubLink').href,
-    profileImage: document.getElementById('profile-image').src,
+    email: document.getElementById('emailAnchor').innerText.trim(),
+    linkedin: document.getElementById('linkedinAnchor').href,
+    github: document.getElementById('githubAnchor').href,
+    profileImage: document.getElementById('profileImage').src || '',
     about: document.getElementById('aboutText').innerHTML,
-    projects: Array.from(document.querySelectorAll('#projectList .item')).map(it => ({
-      title: it.querySelector('strong') ? it.querySelector('strong').innerText : '',
-      desc: it.querySelector('.small') ? it.querySelector('.small').innerText : '',
-      img: it.querySelector('img') ? it.querySelector('img').src : ''
-    })),
-    experience: Array.from(document.querySelectorAll('#experienceList .item')).map(it => it.innerHTML),
-    education: document.getElementById('educationContent').innerHTML,
-    certifications: Array.from(document.querySelectorAll('#certContent .item')).map(it=>it.innerText),
-    activities: Array.from(document.querySelectorAll('#activityList .item')).map(it=>it.innerText)
+    projects, experience, education: document.getElementById('educationContent').innerHTML,
+    certifications: certs, activities
   };
 }
 
-/* Add project / activity behavior (prompts) */
-document.getElementById('addProjectBtn').addEventListener('click', ()=>{
-  if(!document.body.classList.contains('edit-mode')){ alert('Enable Edit Mode first'); return; }
-  const title = prompt('Project title:'); if(!title) return;
+/* ----------- Add project flow (prompts) ----------- */
+document.getElementById('addProject').addEventListener('click', ()=>{
+  if(!document.body.classList.contains('edit-mode')) return alert('Enable Edit Mode first');
+  const title = prompt('Project Title:');
+  if(!title) return;
   const desc = prompt('Short description:') || '';
-  const img = prompt('Image URL (or leave blank for placeholder):') || 'https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1200&auto=format&fit=crop';
-  currentState.projects.push({title,desc,img});
-  applyState(currentState);
-  saveState(currentState);
+  const link = prompt('Project URL (full link, optional):') || '';
+  // Ask user to upload an image via file input or paste URL
+  const useFile = confirm('Do you want to upload an image file from your device? Click Cancel to use an image URL or leave blank.');
+  if(useFile){
+    const input = document.getElementById('projectFile');
+    input.onchange = (e)=>{
+      const file = e.target.files[0];
+      if(!file) return;
+      const reader = new FileReader();
+      reader.onload = ()=>{
+        state.projects.push({img: reader.result, title, desc, link});
+        saveState(state);
+        applyState(state);
+        alert('Project added with uploaded image.');
+        input.value='';
+      };
+      reader.readAsDataURL(file);
+    };
+    input.click();
+  }else{
+    const imgUrl = prompt('Image URL (leave blank for placeholder):') || '';
+    state.projects.push({img: imgUrl, title, desc, link});
+    saveState(state);
+    applyState(state);
+  }
 });
 
-document.getElementById('addActivityBtn').addEventListener('click', ()=>{
-  if(!document.body.classList.contains('edit-mode')){ alert('Enable Edit Mode first'); return; }
-  const text = prompt('Activity / Achievement:'); if(!text) return;
-  currentState.activities.push(text);
-  applyState(currentState);
-  saveState(currentState);
+/* ----------- Add experience flow ----------- */
+document.getElementById('addExperience').addEventListener('click', ()=>{
+  if(!document.body.classList.contains('edit-mode')) return alert('Enable Edit Mode first');
+  const title = prompt('Experience title (e.g., Company - Role):');
+  if(!title) return;
+  const detail = prompt('Details, duration, and responsibilities:') || '';
+  state.experience.push({title, detail});
+  saveState(state);
+  applyState(state);
 });
 
-/* Edit buttons that allow inline editing focus */
-document.querySelectorAll('[data-edit-target]').forEach(btn=>{
-  btn.addEventListener('click', ()=> {
-    if(!document.body.classList.contains('edit-mode')){ alert('Enable Edit Mode first'); return; }
-    const id = btn.getAttribute('data-edit-target');
-    const el = document.getElementById(id);
-    if(!el) return;
-    el.focus();
-    // just inform user they can edit directly
-    alert('You can now edit this section directly. Changes are saved when you lock editing.');
-  });
+/* ----------- Add activity ----------- */
+document.getElementById('addActivity').addEventListener('click', ()=>{
+  if(!document.body.classList.contains('edit-mode')) return alert('Enable Edit Mode first');
+  const txt = prompt('Activity / Achievement text:');
+  if(!txt) return;
+  state.activities.push(txt);
+  saveState(state);
+  applyState(state);
 });
 
-/* Export / Import JSON */
-document.getElementById('downloadBtn').addEventListener('click', ()=>{
-  const s = collectStateFromDOM();
-  const blob = new Blob([JSON.stringify(s, null, 2)], {type:'application/json'});
-  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
-  a.download = 'portfolio-data.json'; document.body.appendChild(a); a.click(); a.remove();
+/* ----------- Edit / Delete project & experience via event delegation ----------- */
+document.getElementById('projectList').addEventListener('click', (e)=>{
+  if(!document.body.classList.contains('edit-mode')) return;
+  const target = e.target;
+  const item = target.closest('.item');
+  if(!item) return;
+  const idx = Number(item.dataset.index);
+  if(target.classList.contains('edit-proj')){
+    // edit project fields
+    const p = state.projects[idx];
+    const title = prompt('Project title:', p.title) || p.title;
+    const desc = prompt('Short description:', p.desc) || p.desc;
+    const link = prompt('Project URL (full):', p.link || '') || p.link;
+    const changeImg = confirm('Change project image?');
+    if(changeImg){
+      const input = document.getElementById('projectFile');
+      input.onchange = (ev)=>{
+        const file = ev.target.files[0];
+        if(!file) return;
+        const reader = new FileReader();
+        reader.onload = ()=>{
+          state.projects[idx] = {img: reader.result, title, desc, link};
+          saveState(state); applyState(state); input.value='';
+        };
+        reader.readAsDataURL(file);
+      };
+      input.click();
+    }else{
+      state.projects[idx] = {img: p.img, title, desc, link};
+      saveState(state); applyState(state);
+    }
+  }else if(target.classList.contains('del-proj')){
+    if(confirm('Delete this project?')){
+      state.projects.splice(idx,1); saveState(state); applyState(state);
+    }
+  }
+});
+
+document.getElementById('experienceList').addEventListener('click', (e)=>{
+  if(!document.body.classList.contains('edit-mode')) return;
+  const target = e.target; const item = target.closest('.item'); if(!item) return; const idx = Number(item.dataset.idx);
+  if(target.classList.contains('edit-exp')){
+    const ex = state.experience[idx];
+    const title = prompt('Title:', ex.title) || ex.title;
+    const detail = prompt('Details:', ex.detail) || ex.detail;
+    state.experience[idx] = {title, detail}; saveState(state); applyState(state);
+  }else if(target.classList.contains('del-exp')){
+    if(confirm('Delete experience item?')){ state.experience.splice(idx,1); saveState(state); applyState(state); }
+  }
+});
+
+/* ----------- Profile image upload ----------- */
+document.getElementById('profileFile').addEventListener('change', (e)=>{
+  const file = e.target.files[0]; if(!file) return;
+  const reader = new FileReader();
+  reader.onload = ()=>{
+    state.profileImage = reader.result; saveState(state); applyState(state); e.target.value='';
+  };
+  reader.readAsDataURL(file);
+});
+
+/* Right-click edit-actions show when edit-mode enabled (toggle display) */
+const observer = new MutationObserver(()=>{
+  if(document.body.classList.contains('edit-mode')){
+    document.querySelectorAll('#projectList .item').forEach((it, i)=>{ it.dataset.index = i; const ea = it.querySelector('.edit-actions'); if(ea) ea.style.display='flex'; });
+    document.querySelectorAll('#experienceList .item').forEach((it,i)=>{ it.dataset.idx = i; const ea = it.querySelector('.edit-actions'); if(ea) ea.style.display='flex'; });
+  }else{
+    document.querySelectorAll('.edit-actions').forEach(n=>n.style.display='none');
+  }
+});
+observer.observe(document.body, {attributes:true, attributeFilter:['class']});
+
+/* ----------- Export / Import JSON ----------- */
+document.getElementById('exportBtn').addEventListener('click', ()=>{
+  const data = collectStateFromDOM();
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download='portfolio-data.json'; document.body.appendChild(a); a.click(); a.remove();
 });
 
 document.getElementById('importBtn').addEventListener('click', ()=>{
-  const f = document.createElement('input'); f.type='file'; f.accept='application/json';
-  f.onchange = e=>{
+  const input = document.createElement('input'); input.type='file'; input.accept='application/json';
+  input.onchange = (e)=>{
     const file = e.target.files[0];
     if(!file) return;
     const reader = new FileReader();
-    reader.onload = ev=>{
+    reader.onload = ()=>{
       try{
-        const obj = JSON.parse(ev.target.result);
-        // Overwrite current state & apply
-        currentState = Object.assign({}, defaultState, obj);
-        applyState(currentState);
-        saveState(currentState);
-        alert('Imported and applied JSON data.');
-      }catch(err){
-        alert('Invalid JSON file.');
-      }
+        const obj = JSON.parse(reader.result);
+        state = Object.assign({}, defaultState, obj);
+        saveState(state); applyState(state); alert('Imported data applied.');
+      }catch(err){ alert('Invalid JSON file'); }
     };
     reader.readAsText(file);
   };
-  f.click();
+  input.click();
 });
 
-/* On first page load, if there's saved state, apply it */
+/* helper: when clicking on profile avatar in edit mode allow upload */
+document.querySelector('.avatar').addEventListener('click', ()=>{
+  if(!document.body.classList.contains('edit-mode')) return;
+  document.getElementById('profileFile').click();
+});
+
+/* On load, ensure placeholders are shown */
 window.addEventListener('load', ()=>{
-  const s = loadState();
-  currentState = s;
-  applyState(currentState);
+  state = loadState();
+  applyState(state);
 });
 
-/* Save on unload to be safe */
-window.addEventListener('beforeunload', ()=> {
-  const s = collectStateFromDOM(); saveState(s);
-});
+/* save on unload */
+window.addEventListener('beforeunload', ()=>{ saveState(collectStateFromDOM()); });
 
 </script>
 </body>
