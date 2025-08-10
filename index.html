@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Utkarsh Yadav - Portfolio</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; color: #333; }
+        header { background: linear-gradient(135deg, #0052D4, #4364F7, #6FB1FC); color: #fff; padding: 40px 20px; text-align: center; animation: fadeIn 1.5s ease; }
+        header h1 { margin: 0; font-size: 2.5em; }
+        header p { margin: 10px 0; }
+        nav { text-align: center; background: #222; padding: 10px 0; position: sticky; top: 0; z-index: 100; }
+        nav a { color: #fff; margin: 0 15px; text-decoration: none; font-weight: bold; transition: color 0.3s; }
+        nav a:hover { color: #6FB1FC; }
+        section { padding: 20px; max-width: 900px; margin: auto; background: #fff; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); animation: fadeInUp 0.8s ease; }
+        h2 { border-bottom: 3px solid #6FB1FC; padding-bottom: 5px; color: #0052D4; display: flex; align-items: center; justify-content: space-between; }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; }
+        footer { background: #222; color: #fff; text-align: center; padding: 15px; }
+        .contact a { color: #FFD700; }
+        button { background: #0052D4; color: white; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; transition: background 0.3s; font-size: 0.9em; }
+        button:hover { background: #4364F7; }
+        img { max-width: 100%; border-radius: 8px; margin: 10px 0; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    <script>
+        function addItem(listId, type) {
+            let item = prompt(`Enter your new ${type}:`);
+            if(item) {
+                let li = document.createElement("li");
+                li.textContent = item;
+                document.getElementById(listId).appendChild(li);
+            }
+        }
+        function editContent(sectionId) {
+            let section = document.getElementById(sectionId);
+            let newContent = prompt("Edit your information:", section.innerHTML);
+            if(newContent !== null) section.innerHTML = newContent;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1 id="name">Utkarsh Yadav</h1>
+        <p id="tagline">Mechanical Engineering Student | CAD Designer | Problem Solver</p>
+        <img src="https://via.placeholder.com/150" alt="Profile Picture">
+        <p class="contact">
+            Email: <a href="mailto:itsutkarsh2203@gmail.com">itsutkarsh2203@gmail.com</a> | 
+            <a href="https://www.linkedin.com/in/utkarsh-yadav-01746a282/" target="_blank">LinkedIn</a> | 
+            <a href="https://github.com/utkarsh032211" target="_blank">GitHub</a>
+        </p>
+    </header>
+    <nav>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#activities">Activities</a>
+    </nav>
+    <section id="education">
+        <h2>Education <button onclick="editContent('education-content')">Edit</button></h2>
+        <div id="education-content">
+            <p><strong>Vellore Institute of Technology</strong> - B.Tech Mechanical Engineering, GPA: 8.2 (2022 - 2026)</p>
+            <p><strong>Kendriya Vidyalaya No 2 Jaipur Cantt</strong> - Class 12th, 80% (2021)</p>
+        </div>
+    </section>
+    <section id="skills">
+        <h2>Skills Summary <button onclick="editContent('skills-content')">Edit</button></h2>
+        <div id="skills-content">
+            <ul>
+                <li><strong>Languages:</strong> Python, Java</li>
+                <li><strong>Technical Skills:</strong> SolidWorks, AutoCAD, CATIA, Siemens NX, Fanuc Roboguide</li>
+                <li><strong>Analysis Tools:</strong> ANSYS, MATLAB, Simulink</li>
+                <li><strong>Other Tools:</strong> MS Office, Fusion 360</li>
+                <li><strong>Soft Skills:</strong> Leadership, Event Management, Writing, Public Speaking, Time Management</li>
+            </ul>
+        </div>
+    </section>
+    <section id="experience">
+        <h2>Experience <button onclick="editContent('experience-content')">Edit</button></h2>
+        <div id="experience-content">
+            <p><strong>Banaras Locomotive Works - Indian Railways</strong> (June 2025 - July 2025)<br> Mechanical Engineering Intern - Hands-on work with locomotive component manufacturing, assembly, and workflow systems.</p>
+            <p><strong>Freezo Tech Systems</strong> (May 2024 - July 2024)<br> CAD modeling, optimization of modular cold rooms, and material insulation projects.</p>
+        </div>
+    </section>
+    <section id="projects">
+        <h2>Projects <button onclick="addItem('project-list', 'project')">Add</button></h2>
+        <ul id="project-list">
+            <li><strong>Helical Gear Box Design:</strong> SolidWorks design with detailed 2D drawings and exploded views.</li>
+            <li><strong>Radial Engine Assembly:</strong> Functional SolidWorks model with real-time motion simulation.</li>
+            <li><strong>Bolt and Nut Recommendation System:</strong> Python tool recommending optimal fasteners based on input parameters.</li>
+        </ul>
+    </section>
+    <section id="certifications">
+        <h2>Certifications <button onclick="editContent('certifications-content')">Edit</button></h2>
+        <div id="certifications-content">
+            <ul>
+                <li>Microsoft Certified: Azure AI Fundamentals (AI-900)</li>
+                <li>Python for Mechanical Engineers (Udemy)</li>
+                <li>Geometric Dimensioning and Tolerancing - Basics (Udemy)</li>
+            </ul>
+        </div>
+    </section>
+    <section id="activities">
+        <h2>Extra-Curricular Activities <button onclick="addItem('activity-list', 'achievement')">Add</button></h2>
+        <ul id="activity-list">
+            <li>Student Coordinator – Gravitas Tech Fest VIT Vellore</li>
+            <li>Student Volunteer – Riviera Cultural Fest VIT Vellore</li>
+            <li>First Place – Speech Competition (Army Regiment Event)</li>
+        </ul>
+    </section>
+    <footer>
+        <p>&copy; 2025 Utkarsh Yadav. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
